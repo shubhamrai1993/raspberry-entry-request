@@ -92,7 +92,7 @@ try:
 	while True:
 		switchOn = GPIO.input(inputPin)
 		print "Switch on: " + str(switchOn)
-		if switchOn is 0 : 
+		if switchOn is 1 : 
 			invoke_camera()
 			imageUrl = upload_image()
 			entryRequestId = submit_entry_request(imageUrl)
