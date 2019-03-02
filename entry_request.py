@@ -6,7 +6,6 @@ import requests
 import json
  
 def invoke_camera():
-	# Camera 0 is the integrated web cam on my netbook
 	camera_port = 0
 	 
 	#Number of frames to throw away while the camera adjusts to light levels
@@ -18,14 +17,14 @@ def invoke_camera():
 	 
 	# Captures a single image from the camera and returns it in PIL format
 	def get_image(camera):
-	 # read is the easiest way to get a full image out of a VideoCapture object.
-	 retval, im = camera.read()
-	 return im
+		# read is the easiest way to get a full image out of a VideoCapture object.
+		retval, im = camera.read()
+		return im
 	 
 	# Ramp the camera - these frames will be discarded and are only used to allow v4l2
 	# to adjust light levels, if necessary
 	for i in xrange(ramp_frames):
-	 temp = get_image(camera)
+		temp = get_image(camera)
 	print("Taking image...")
 	# Take the actual image we want to keep
 	camera_capture = get_image(camera)
@@ -37,17 +36,6 @@ def invoke_camera():
 	# You'll want to release the camera, otherwise you won't be able to create a new
 	# capture object until your script exits
 	del(camera)
-#  WIDTH=1280
-#  HEIGHT=1024
-#
-#  camera = picamera.PiCamera()
-#  camera.vflip = False
-#  camera.hflip = False
-#  camera.brightness = 60
-#  camera.start_preview()
-#  time.sleep(0.5)
-#  camera.capture('test_image.jpeg', format='jpeg', resize=(WIDTH,HEIGHT))
-#  camera.stop_preview()
 
 def upload_image():
 	url = "http://13.127.61.109:8080/images"
